@@ -1,0 +1,16 @@
+.call_me_maybe {
+    margin-top: 5%;
+    margin-bottom: 5%;
+    width: 80%;
+    background-color: #ffffe6;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+#twitchLocate {
+    width: 40%;
+    margin-right: auto;
+    margin-left: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
