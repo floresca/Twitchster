@@ -18,6 +18,9 @@
 .sapients {
     list-style-type: none;
     padding-left: 0;
+    overflow: auto;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 li {
@@ -34,4 +37,17 @@ li {
 img {
     width: 100px;
     height: 100px;
+}
+
+.channel_showing {
+    padding-left: 30px;
+    padding-right: 20px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100px;
+    overflow: hidden;
+}
+
+.channel_name {
+    padding-left: 10px;
 }
