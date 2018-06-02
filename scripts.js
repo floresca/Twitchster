@@ -20,7 +20,7 @@ $(document).ready(function() {
             
 //Create an LI element with span children to share the same space
             var list =  "<a href='"+CLink+"'>" +
-                            "<li class='ChannelItem'>" +
+                            "<li class='ChannelOff'>" +
                                 "<span class='channel_icon'>" +
                                     "<img src='"+Cicon+"' class='icon'>" +
                                 "</span>" +
@@ -42,10 +42,8 @@ $(document).ready(function() {
         $.getJSON(AreWeLive, twitchON);
             
         function twitchON(twitchLIVE){
-            if(twitchLIVE.stream == null){
-                $("li").css({"background-color": "#d9d9d9"});
-            } else {
-                $("li").css({"background-color": "#99ff66"});
+            if(twitchLIVE.stream !== null){
+                $("li").attr("class", "ChannelOn");
             }
         }
     }

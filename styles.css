@@ -51,3 +51,11 @@ img {
 .channel_name {
     padding-left: 10px;
 }
+
+.ChannelOff {
+    background-color: grey;
+}
+
+.ChannelOn {
+    background-color: green;
+}
