@@ -8,19 +8,22 @@ $(document).ready(function() {
 //Loop through the defaults and create a unique link for each
     for(var i = 0; i < whoCalls.length; i++){
         twitchGET = twitchINFO + whoCalls[i];
-        
+        AreWeLive = twitchTRUE + whoCalls[i];
 //Call the API and get information from it
-        $.getJSON(twitchGET,twitchPUSH)
         
-        function twitchPUSH(pushedInfo){
+        $.ajax({
+          url: twitchGET,
+          dataType: 'json',
+          async: false,
+          success: function(pushedInfo) {
             var Cicon = pushedInfo.logo;
             var CName = pushedInfo.display_name;
             var CShowing = pushedInfo.status;
             var CLink = pushedInfo.url;
             
 //Create an LI element with span children to share the same space
-            var list =  "<a href='"+CLink+"'>" +
-                            "<li class='ChannelOff'>" +
+            var listON =  "<a href='"+CLink+"' class='alive'>" +
+                            "<li class='ChannelOn channel tooLong'>" +
                                 "<span class='channel_icon'>" +
                                     "<img src='"+Cicon+"' class='icon'>" +
                                 "</span>" +
@@ -29,23 +32,33 @@ $(document).ready(function() {
                                 // "<span class='channel_remove glyphicon glyphicon-remove'></span>" +
                             "</li>" +
                         "</a>";
-
-//Append our new LI into the UL element for every channel
-            $("ul").append(list);
-            
-        }
+                        
+            var listOFF = "<a href='"+CLink+"' class='dead'>" +
+                            "<li class='ChannelOff tooLong'>" +
+                                "<span class='channel_icon'>" +
+                                    "<img src='"+Cicon+"' class='icon'>" +
+                                "</span>" +
+                                "<span class='channel_name'>"+CName+"</span>" +
+                                "<span class='channel_showing'>Offline</span>" +
+                                // "<span class='channel_remove glyphicon glyphicon-remove'></span>" +
+                            "</li>" +
+                        "</a>";
         
 
 //This is the online vs offline   
-        AreWeLive = twitchTRUE + whoCalls[i];
-        console.log(AreWeLive);
-        $.getJSON(AreWeLive, twitchON);
-            
-        function twitchON(twitchLIVE){
-            if(twitchLIVE.stream !== null){
-                $("li").attr("class", "ChannelOn");
+               $.ajax({
+                   url: AreWeLive,
+                   dataType: "JSON",
+                   success: function(twitchLIVE){
+                       if(twitchLIVE.stream !== null){
+                           $("ul").append(listON);
+                       } else {
+                           $("ul").append(listOFF);
+                       }
+                   }
+               });
             }
-        }
+        });
     }
 });
 
