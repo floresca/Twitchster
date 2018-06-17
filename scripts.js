@@ -65,16 +65,16 @@ $(document).ready(function() {
 
 //call the API to confirm if the channel is offline    
 
-        // var twitchUNIQUE;
-        // twitchUNIQUE = twitchTRUE + whoCalls[i];
+        var twitchUNIQUE;
+        twitchUNIQUE = twitchTRUE + whoCalls[i];
         
-        // $.getJSON(twitchUNIQUE, isItOnline);
+        $.getJSON(twitchUNIQUE, isItOnline);
         
         
-        // function isItOnline(maybeItIS){
-        //     if(maybeItIS.stream == null){
-        //         $("li").css({"background-color": "#d9d9d9"});
-        //     } else {
-        //         $("li").css({"background-color": "#99ff66"});
-        //     }
-        // }
+        function isItOnline(maybeItIS){
+            if(maybeItIS.stream == null){
+                $("li").css({"background-color": "#d9d9d9"});
+            } else {
+                $("li").css({"background-color": "#99ff66"});
+            }
+        }
